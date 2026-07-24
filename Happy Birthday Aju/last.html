@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Beautiful Memories ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg,
+                    #ffd1dc 0%,
+                    #e6e6fa 25%,
+                    #ffefd5 50%,
+                    #e6e6fa 75%,
+                    #ffd1dc 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            color: #4a4a4a;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Enhanced Sparkle Effect */
+        .magic-sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: white;
+            animation: twinkle var(--duration, 4s) ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+        }
+
+        /* Generate 50 sparkles with different positions and animations */
+        .magic-sparkles::before,
+        .magic-sparkles::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, white 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: sparkleLayer 8s linear infinite;
+            opacity: 0.5;
+        }
+
+        .magic-sparkles::after {
+            animation-delay: -4s;
+            transform: rotate(45deg);
+        }
+
+        @keyframes sparkleLayer {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50px);
+            }
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 105, 180, 0.6);
+            animation: floatHeart var(--float-duration, 6s) ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translate(0, 100vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(var(--translate-x, 0), -100vh) rotate(360deg);
+            }
+        }
+
+        /* Welcome Section */
+        .welcome {
+            text-align: center;
+            padding: 4rem 2rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .welcome h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: fadeInScale 2s ease;
+        }
+
+        .welcome p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            line-height: 1.6;
+            animation: fadeIn 2s ease 0.5s both;
+        }
+
+        /* Enhanced Memory Cards */
+        .memory-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            z-index: 3;
+            position: relative;
+        }
+
+        .memory-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .memory-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .memory-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .memory-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .memory-card:hover .memory-img {
+            transform: scale(1.05);
+        }
+
+        .memory-date {
+            font-family: 'Dancing Script', cursive;
+            color: #ff69b4;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .memory-caption {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #666;
+        }
+
+        /* Final Message Section */
+        .final-message {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            margin-top: 3rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .final-message h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #ff69b4;
+            margin-bottom: 2rem;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .final-message p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .goodbye-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .goodbye-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
+        }
+
+        .surprise-message {
+            max-width: 800px;
+            max-height: 0;
+            margin: 0 auto;
+            overflow: hidden;
+            text-align: center;
+            opacity: 0;
+            transition: max-height 0.8s ease, margin 0.8s ease, opacity 0.8s ease;
+        }
+
+        .surprise-message.show {
+            max-height: 300px;
+            margin: 3rem auto 5rem;
+            opacity: 1;
+        }
+
+        .surprise-message div {
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.75);
+            box-shadow: 0 10px 25px rgba(255, 105, 180, 0.18);
+        }
+
+        .surprise-message h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #ff69b4;
+            margin-bottom: 1rem;
+        }
+
+        .surprise-message p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Generate Hearts */
+        .js-generate-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #ff69b4, #da70d6);
+            border-radius: 6px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome h1 {
+                font-size: 3rem;
+            }
+
+            .memory-container {
+                grid-template-columns: 1fr;
+            }
+
+            .final-message h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="magic-sparkles"></div>
+    <div class="floating-hearts">
+        <!-- Hearts will be generated via CSS -->
+        <div class="heart" style="--float-duration: 6s; --delay: 0s; --translate-x: 20px;">💝</div>
+        <div class="heart" style="--float-duration: 8s; --delay: 1s; --translate-x: -30px;">💖</div>
+        <div class="heart" style="--float-duration: 7s; --delay: 2s; --translate-x: 40px;">💗</div>
+        <div class="heart" style="--float-duration: 9s; --delay: 3s; --translate-x: -20px;">💓</div>
+        <div class="heart" style="--float-duration: 5s; --delay: 4s; --translate-x: 30px;">💕</div>
+    </div>
+
+    <section class="welcome">
+        <h1>Our Beautiful Moments Together</h1>
+        <p>Every moment spent with you has been magical. Let's cherish these precious memories ...</p>
+    </section>
+
+    <div class="memory-container">
+    <div class="memory-card">
+        <img src="./aju1.jpeg" alt="Memory 1" class="memory-img">
+        <div class="memory-date">Her Smile Says It All</div>
+        <div class="memory-caption">You make every moment brighter. ❤️</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju2.jpeg" alt="Memory 2" class="memory-img">
+        <div class="memory-date">Together Vibes</div>
+        <div class="memory-caption">So many beautiful memories with you. 💕</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju3.jpeg" alt="Memory 3" class="memory-img">
+        <div class="memory-date">Pretty Soul</div>
+        <div class="memory-caption">Keep being your wonderful self. 🌸</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju4.jpeg" alt="Memory 4" class="memory-img">
+        <div class="memory-date">Special Day</div>
+        <div class="memory-caption">A memory I will always cherish. ✨</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju5.jpeg" alt="Memory 5" class="memory-img">
+        <div class="memory-date">Beautiful Moment</div>
+        <div class="memory-caption">Every smile tells a lovely story. 💖</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju6.jpeg" alt="Memory 6" class="memory-img">
+        <div class="memory-date">Happy Times</div>
+        <div class="memory-caption">Here’s to more laughter and joy together. 😊</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju7.jpeg" alt="Memory 7" class="memory-img">
+        <div class="memory-date">Sweet Memories</div>
+        <div class="memory-caption">You make ordinary moments feel magical. 🌟</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju8.jpeg" alt="Memory 8" class="memory-img">
+        <div class="memory-date">Forever Favorite</div>
+        <div class="memory-caption">One more unforgettable memory. 💝</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju9.jpeg" alt="Memory 9" class="memory-img">
+        <div class="memory-date">Golden Memory</div>
+        <div class="memory-caption">A beautiful chapter in our story. 🌼</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju10.jpeg" alt="Memory 10" class="memory-img">
+        <div class="memory-date">Lovely Day</div>
+        <div class="memory-caption">Your happiness means so much to me. 💗</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju11.jpeg" alt="Memory 11" class="memory-img">
+        <div class="memory-date">Best Moments</div>
+        <div class="memory-caption">Another photo, another reason to smile. ✨</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju12.jpeg" alt="Memory 12" class="memory-img">
+        <div class="memory-date">Pure Happiness</div>
+        <div class="memory-caption">The little moments are the most precious. 💕</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju13.jpeg" alt="Memory 13" class="memory-img">
+        <div class="memory-date">My Favorite</div>
+        <div class="memory-caption">A memory worth keeping forever. 🌸</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju14.jpeg" alt="Memory 14" class="memory-img">
+        <div class="memory-date">Shining Bright</div>
+        <div class="memory-caption">Keep shining exactly as you are. 💖</div>
+    </div>
+
+    <div class="memory-card">
+        <img src="./aju15.jpeg" alt="Memory 15" class="memory-img">
+        <div class="memory-date">Always Special</div>
+        <div class="memory-caption">Thank you for all these wonderful memories. ❤️</div>
+    </div>
+</div>
+
+    <section class="final-message">
+        <h2>Thank You for the Memories</h2>
+        <p>Every laugh, every chat, and every moment we’ve shared has been truly special.💫<br>
+            I’m so grateful for the bond we have, and for the positivity you always bring into my life.<br>
+            On your birthday, I just wish for endless happiness, love, and success to come your way.🌸</p>
+        <p>You deserve all the joy in the world—keep shining and spreading your beautiful energy.✨</p>
+        <button type="button" class="goodbye-btn" id="surprise-button">Until We Meet Again 💝</button>
+    </section>
+
+    <section class="surprise-message" id="surprise-message" aria-hidden="true">
+        <div>
+            <h2>One Last Thing…</h2>
+            <p>No matter where life takes us, I’ll always be grateful for every memory we share. Stay happy, keep smiling, and have the most beautiful birthday! 💖</p>
+        </div>
+    </section>
+
+    <script>
+        const surpriseButton = document.getElementById('surprise-button');
+        const surpriseMessage = document.getElementById('surprise-message');
+
+        surpriseButton.addEventListener('click', () => {
+            surpriseMessage.classList.add('show');
+            surpriseMessage.setAttribute('aria-hidden', 'false');
+            surpriseButton.textContent = 'With Lots of Love 💖';
+            surpriseButton.disabled = true;
+            setTimeout(() => surpriseMessage.scrollIntoView({ behavior: 'smooth', block: 'center' }), 150);
+        });
+    </script>
+</body>
+
+</html>
