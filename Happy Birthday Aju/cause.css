@@ -207,9 +207,15 @@ h1 {
 }
 
 @media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-    .reason-card { margin: 1rem; }
-    .reason-text { font-size: 1rem; }
+    body { padding: 1rem; }
+    h1 { font-size: 2.3rem; }
+    .intro-card { padding: 1.5rem 1.2rem; }
+    .intro-card h2 { font-size: 1.5rem; }
+    .intro-card p { font-size: 1rem; }
+    .reason-card { margin: 1rem 0; min-height: 260px; }
+    .reason-text { font-size: 1rem; line-height: 1.5; }
+    .shuffle-button { font-size: 1rem; padding: 0.9rem 1.4rem; }
+    .custom-cursor { display: none; }
 }
 .shuffle-button {
     background: linear-gradient(45deg, #ff69b4, #ff99cc);
